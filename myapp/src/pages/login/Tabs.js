@@ -82,7 +82,7 @@ console.log(value);
         <div class="jcontainer">
             <div class="topic">
                 <p>Create Your Account</p>
-                <a href="login.html"> <b>SIGN IN</b></a>
+                <Link to='/'> <b>SIGN IN</b></Link>
             </div>
            
            
