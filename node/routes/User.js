@@ -4,15 +4,16 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken');
 const { CreateToken } = require('../middleware/CreateToken');
 const { MongoClient, ObjectId } = require('mongodb');
-var url = "mongodb://localhost:27017";
-
-
+const url ='mongodb+srv://priya:kmhsZdRhksYQ6uE3@cluster0.licbo.mongodb.net/irctc?retryWrites=true&w=majority';
+//insert contact
+const client = new MongoClient(url);
+client.connect();
 router.use(express.urlencoded({ extended: true }))
 router.use(express.json());
 
 router.post("/addusers", function (req, res) {
     console.log(req.body);
-    MongoClient.connect(url,function(err,conn){
+    client.connect(function(err,conn){
 
         var db = conn.db("irctc");
 
@@ -52,7 +53,7 @@ router.post("/addusers", function (req, res) {
 
 router.post("/login", function (req, res) {
     console.log(req.body);
-    MongoClient.connect(url, function (err, conn) {
+    client.connect(function (err, conn) {
         var db = conn.db("irctc");
         db.collection("users").findOne({Email: req.body.Email},function (err, data) 
             {
@@ -76,6 +77,7 @@ router.post("/login", function (req, res) {
                             res.send({
                     message:"logged in successfully",
                     _id:data._id,
+                    username:data.username,
                   Email:data.Email,
                     password:data.password,
                     token
@@ -93,7 +95,7 @@ router.post("/login", function (req, res) {
     })
 
     router.get("/viewuser",function(req,res){
-        MongoClient.connect(url,(err,con)=>{
+        client.connect((err,con)=>{
                  var db = con.db("irctc")
                  db.collection("users").find().toArray((err,data)=>
                  {

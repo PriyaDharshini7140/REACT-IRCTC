@@ -28,7 +28,7 @@ else{
   localStorage.setItem("user", res.data.token);
   localStorage.setItem("user_id", res.data._id);
 
- 
+  localStorage.setItem("username", res.data.username);
 }
 
         })

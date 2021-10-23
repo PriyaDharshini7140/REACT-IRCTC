@@ -26,7 +26,7 @@ function Freightform() {
         const add=(date)=>{var d=new Date(date)
         d.setDate(d.getDate()+2);
         setsArrival(d)}
-
+const username = localStorage.getItem("username")
     const [sarrival, setsArrival] = useState(new Date())
     const [sftype, setsFtype] = useState("")
 
@@ -95,7 +95,7 @@ function Freightform() {
                 try {
                     // await axios.post("http://localhost:8080/insertfreight",
                     axios.post("http://localhost:7000/Freight/insertfreight",
-                        { sfid, sfname, sftype, sdeparture, sarrival, sfrom, sto },  {
+                        { username,sfid, sfname, sftype, sdeparture, sarrival, sfrom, sto },  {
                             headers:{authorization:`Bearer ${Token()}`}
                            }
                     )

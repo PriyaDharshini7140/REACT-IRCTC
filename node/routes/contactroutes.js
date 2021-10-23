@@ -2,11 +2,13 @@ var express = require("express");
 var router = express.Router();
 const{MongoClient,ObjectId} = require('mongodb');
 const { checkPermission } = require("../middleware/CheckPermission");
-const url ='mongodb://localhost:27017/';
+const url ='mongodb+srv://priya:kmhsZdRhksYQ6uE3@cluster0.licbo.mongodb.net/irctc?retryWrites=true&w=majority';
 //insert contact
+const client = new MongoClient(url);
+client.connect();
 router.post("/insertcontact",function(req,res){
     console.log(req.body);
-    MongoClient.connect(url,function(err,con){
+   client.connect(function(err,con){
         var db = con.db("irctc")
         db.collection('contact').insertOne(req.body,function(err,data){
             console.log(data)
@@ -15,7 +17,7 @@ router.post("/insertcontact",function(req,res){
     })
 })
 router.get("/contactlist",function(req,res){
-    MongoClient.connect(url,function(err,con){
+    client.connect(function(err,con){
         var db = con.db("irctc")
         db.collection('contact').find().toArray(function(err,data){
             console.log(data)
@@ -24,7 +26,7 @@ router.get("/contactlist",function(req,res){
     })
 })
 router.get("/viewcontact/:id",function(req,res){
-    MongoClient.connect(url,function(err,con){
+   client.connect(function(err,con){
         var db = con.db("irctc")
         db.collection('contact').findOne({_id:ObjectId(req.params.id)},function(err,data){
             res.send(data)
@@ -32,7 +34,7 @@ router.get("/viewcontact/:id",function(req,res){
     })
 })
 router.get("/deletecontact/:id",function(req,res){
-    MongoClient.connect(url,function(err,con){
+    client.connect(function(err,con){
         var db = con.db("irctc")
         db.collection('contact').deleteOne({_id:ObjectId(req.params.id)},function(err,data){
             res.send(data)
@@ -40,7 +42,7 @@ router.get("/deletecontact/:id",function(req,res){
     })
 })
 router.post("/updatecontact",function(req,res){
-    MongoClient.connect(url,function(err,conn){
+    client.connect(function(err,conn){
         console.log(req.body)
         var db = conn.db("irctc");
         db.collection("contact")
