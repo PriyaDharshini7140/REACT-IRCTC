@@ -95,7 +95,7 @@ nav {
     nav ul li {
       display: flex;
       justify-content: center;
-      /* line-height: 40px; */
+      
     }
     nav ul li a {
       font-size: 20px;
@@ -104,7 +104,7 @@ nav {
   
    
     nav ul li a:hover {
-      /* border: 1px solid white; */
+      
      border-radius: 20px;
      border: 2px solid;
     border-radius: 20px;
@@ -118,7 +118,7 @@ nav {
   
   footer{
       height: 19vh;
-      /* background-color:rgb(131, 29, 29); */
+      
       
   }
   .facebook{
@@ -195,7 +195,7 @@ height: 40px;
 margin-top: 10px;
 box-shadow: 1px 0px 5px #B7B7B7;
 background: #012443;
-color:white
+color:#012443;
  }
  .footer-footer div{
    display: flex;
@@ -212,9 +212,9 @@ color:white
 .footer-header{
   display: flex;
 flex-direction: column;
-  /* line-height: 60px; */
+  
  justify-content: center;
-/* width: 100%; */
+
 align-items: center;
  box-shadow: 1px 0px 10px #B7B7B7;
 }
@@ -243,7 +243,7 @@ font-weight: bold;
   border-radius: 5px;
   padding-left: 15px;
   border: none;
-  color:white;
+
   border-bottom-width: 2px;
   background-color: #012443
 
@@ -260,10 +260,9 @@ font-weight: bold;
     position: sticky;
     top:0;
     height: 30vh;
-    /* background-color: rgba(#012443,0,0, 0.5); */
+ 
     background-color: #f8f8f7;
-    /* box-shadow: 0px 1px 10px #B7B7B7; */
-    /* height: 60px; */
+    
     padding:20px;
     /* width: 100%; */
 }

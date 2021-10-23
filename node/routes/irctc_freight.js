@@ -11,7 +11,7 @@ router.use(express.urlencoded({ extended: true }))
 router.use(express.json())
 
 
-router.post("/insertfreight", function (req, res) {
+router.post("/insertfreight",checkPermission(), function (req, res) {
     console.log(req.body)
     MongoClient.connect(url, function (err, conn) {
         var db = conn.db("delta")
@@ -35,7 +35,7 @@ router.post("/insertfreight", function (req, res) {
 //     })
 // })
 
-router.get("/render", function (req, res) {
+router.get("/render",checkPermission(), function (req, res) {
     MongoClient.connect(url, function (err, conn) {
         var db = conn.db("delta")
         db.collection("irctc").find().toArray(function (req, data) {
@@ -45,7 +45,7 @@ router.get("/render", function (req, res) {
         })
     })
 })
-router.get("/renderone/:id", function (req, res) {
+router.get("/renderone/:id",checkPermission(), function (req, res) {
     MongoClient.connect(url, function (err, conn) {
         var db = conn.db("delta")
         db.collection("irctc").findOne({_id:ObjectId(req.params.id)},function(err,data) {
@@ -70,7 +70,7 @@ router.get("/renderone/:id", function (req, res) {
 //     })
 // })
 
-router.patch("/updatefreight", function (req, res) {
+router.patch("/updatefreight",checkPermission(), function (req, res) {
 MongoClient.connect(url, function (err, conn) {
         console.log(req.body)
         var db = conn.db("delta");

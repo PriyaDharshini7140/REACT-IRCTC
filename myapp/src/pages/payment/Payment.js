@@ -11,18 +11,53 @@ import axios from 'axios';
 import BasicModal from './Pay';
 import './Payment.css'
 
-function Payment() { 
+function Payment(props) { 
+  console.log(props);
   const [open, setOpen] = useState(false);
   const [show,setShow]=useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
+  let amount = 0;
+ const {location:{state}} = props;
+    console.log("props",state);
+    if(state.class === 'AC 2 Tier (2A)'){
+     amount=2070
+    }
+    else if(state.class === 'AC 3 Tier (3A)'){
+      amount=1500
+    }
+    else if(state.class === 'Sleeper (SL)'){
+      amount=680
+    }
+    else if(state.class === 'Ac First Class (FC)'){
+      amount=2570
+    }
+    else if(state.class === 'Second Sitting (2S))'){
+      amount=390
+    }
         const { register, handleSubmit, formState: { errors } } = useForm();
+
+        const Token = () => localStorage.getItem("user");
+
+const total = amount*state.Passengers;
+
         const onSubmit = (data) =>{
           handleOpen()
-          // axios.post("http://localhost:7070/payment/insert",{data})
-        axios.post("http://localhost:7000/Payment/insert",{data})
-        .then((response)=> {setShow(data);
+        axios.post("http://localhost:7000/Payment/insert",{data},{
+          headers:{authorization:`Bearer ${Token()}`}
+         }
+       )
+        .then((res)=> {
+          axios.patch("http://localhost:7000/Booking/updateStatus",
+            {_id:state.booking_id,amount:total,status:"confirmed"
+             },{
+              headers:{authorization:`Bearer ${Token()}`}
+             }
+           ).then((res)=>{
+               console.log(res.data);
+             
+             })
+          setShow(data);
     
         })
       }
@@ -128,17 +163,30 @@ function Payment() {
     <div className="divscol-50">
         <label className="divsdd" for="expyear">Expiry Year</label>
 
-<select className="divsff" name="card" {...register("expyear", {
-    required: '*Year Required', 
-  })}>
-    <option value="">Year</option>
-    <option value="2022">2022</option>
-    <option value="2023">2023</option>
-    <option value="2024">2024</option>
-    <option value="2025">2025</option>
-    <option value="2026">2026</option>  
-    </select><br/>
-  {errors.expyear && (<small className="errorms">{errors.expyear.message}</small> )}
+        <input type="text" className="divsss" id="expyear" name="expyear" placeholder="Year" {...register("expyear",{
+
+minLength: {
+
+  value: 4,
+
+  message: '*Enter Correct Year'
+
+},
+
+maxLength: {
+
+value: 4,
+
+message: '*Enter Correct Year'
+
+},
+
+required: '*Year Required'
+
+})}/><br/>
+
+{errors.expyear && (<small className="errorms">{errors.expyear.message}</small> )}
+        
 
     </div>
     <div className="divscol-50">
@@ -154,14 +202,14 @@ function Payment() {
       },
           required: '*CVV Required' 
           
-  })}/>
+  })}/><br/>
   {errors.cvv && (<small className="errorms">{errors.cvv.message}</small> )}
 
     </div>
 </div>
 </div>
 </div>
-<BasicModal data={show} open={open} close={handleClose}/>
+<BasicModal data={show} amount={total} open={open} close={handleClose}/>
 
 
 </form>
@@ -170,14 +218,15 @@ function Payment() {
     <div className="divscol-25">
           <div className="divscontainer1">
             <h4> <center>Total</center><span className="divsprice" style={{color:"black"}}></span></h4>
-            <p className="divsp">Base Fare <span className="divsprice">1500</span></p>
+            <p className="divsp">Base Fare <span className="divsprice">{total}</span></p>
             <p className="divsp">Convenience Fee <span className="divsprice">0.00</span></p>
             <p className="divsp">Tax(16.00%) <span className="divsprice">0.00</span></p>
             <hr className="divscc"/>
-            <p className="divsp">Total Amount <span className="divsprice" style={{color:"black"}}><b>INR 1500.0</b></span></p>
+            <p className="divsp">Total Amount <span className="divsprice" style={{color:"black"}}><b>INR {total}</b></span></p>
         </div>
     </div>
 </div>
+<br/>
         </div>
     )
 }

@@ -3,7 +3,8 @@
     padding: 0px;
     margin: 0px;
     font-family: 'Poppins', sans-serif;
-    box-sizing: content-box;
+    /* box-sizing: content-box; */
+    /* box-sizing: border-box; */
 }
 
 .sanheader_menu {
@@ -47,6 +48,7 @@
     /* background-image: url("https://images.designtrends.com/wp-content/uploads/2016/02/23104340/Excellent-Train-Wallpaper.jpg"); */
     background-image: url('../../assets/Excellent-Train-Wallpaper.jpg');
     background-size: cover;
+    box-sizing:border-box;
 }
 
 .sananc {
@@ -56,7 +58,7 @@
 
 .sans1_header {
     padding: 100px 350px;
-    height: 450px;
+    height: 680px;
     color: #012443;
 }
 
@@ -78,6 +80,8 @@
 background-color: rgb(255, 226, 111);
 color:#012443;
 cursor: pointer;
+box-sizing: content-box;
+position: inherit;
 }
   
 
@@ -89,7 +93,7 @@ cursor: pointer;
 
 }
 .sanbn{
-    padding:300px 0px 0px;
+    padding:250px 0px 0px;
 }
 
 .sans1_border {

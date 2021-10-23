@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PrintBtn from './PrintButton';
-
+import { useHistory } from 'react-router';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -18,6 +18,7 @@ const style = {
 };
 
 export default function BasicModal(props) {
+  const history = useHistory()
   return (
     <div>
       <button className="divsbtn">Pay Now</button>
@@ -30,7 +31,8 @@ export default function BasicModal(props) {
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
         
-            <PrintBtn data={props.data}/>
+            <PrintBtn data={props.data} amount={props.amount}/>
+            <center><button className="divsbtn" onClick={()=>history.push('/home') }>Ok</button></center>
             {/* <center><button className="divsok" >Ok</button></center>  */}
            
           </Typography>

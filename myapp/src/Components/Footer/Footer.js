@@ -8,7 +8,7 @@ function Footer() {
     console.log(location);
     return (
         <div>
-             {location.pathname === '/update' ||location.pathname === '/freightform' ||location.pathname === '/freight' || location.pathname === '/pnr' ? "":
+             {location.pathname === '/update' ||location.pathname === '/freightform' ||location.pathname === '/freight' || location.pathname === '/pnr'|| location.pathname==='/reserved'|| location.pathname=='/fareseat' ? "":
             <footer>
         <div class="footer-header">
     <h4>Get Connected with us on social networks</h4>

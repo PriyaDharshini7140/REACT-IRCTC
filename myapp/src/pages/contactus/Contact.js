@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import "./style1.css"
+ import "./style1.css"
 import image1 from '../../assets/contactpic.jpg'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
@@ -9,6 +9,7 @@ export default function Contact() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { register, handleSubmit, watch, formState: { errors }, reset, trigger, } = useForm();
+  
   const onSubmit = data => {
     handleOpen();
     axios.post("http://localhost:7000/Contact/insertcontact", { data })
@@ -16,24 +17,24 @@ export default function Contact() {
   return (
     <div>
      
-      <div class="con">
-        <div class="container">
-          <div class="content">
-            <div class="image-box">
-              <img class="contactimg" src={image1} alt="" />
+      <div class="tcon">
+        <div class="tcontainer">
+          <div class="tcontent">
+            <div class="timage-box">
+              <img class="tcontactimg" src={image1} alt="" />
             </div>
-            <form class="contactform" onSubmit={handleSubmit(onSubmit)}>
-              <div class="topic">Send us a message</div>
-              <div class="input-box">
-                <input type="text" class="textbox" placeholder="Enter Your Name" {...register("name", {
+            <form class="tcontactform" onSubmit={handleSubmit(onSubmit)}>
+              <div class="ttopic">Send us a message</div>
+              <div class="tinput-box">
+                <input type="text" class="ttextbox" placeholder="Enter Your Name" {...register("name", {
                   required: '*Name is required'
                 })} />
                 {/* <label>Enter your name</label> */}
               </div>{errors.name && (
-                <small className="text-danger">{errors.name.message}</small>
+                <small className="ttext-danger">{errors.name.message}</small>
               )}
-              <div class="input-box" >
-                <input type="text" class="textbox" placeholder="Enter Your Email"  {...register("email", {
+              <div class="tinput-box" >
+                <input type="ttext" class="ttextbox" placeholder="Enter Your Email"  {...register("email", {
                   required: "*Email is Required",
 
                   pattern: {
@@ -47,25 +48,26 @@ export default function Contact() {
                 })} />
                 {/* <label>Enter your email</label> */}
               </div>{errors.email && (
-                <small className="text-danger">{errors.email.message}</small>
+                <small className="ttext-danger">{errors.email.message}</small>
               )}
-              <div class="message-box">
+              <div class="tmessage-box">
                 {/* <label>Enter your message</label> */}
-                <textarea class="msgbox" placeholder="Enter Your Message" {...register("msg", {
+                <textarea class="tmsgbox" placeholder="Enter Your Message" {...register("msg", {
                   required: '*Message is required'
                 })}></textarea>
               </div>{errors.msg && (
-                <small className="text-danger">{errors.msg.message}</small>
+                <small className="ttext-danger">{errors.msg.message}</small>
               )}
-              <div class="input-box">
+              <div class="tinput-box">
                 {/* <input type="submit" class="submitbutton" value="Send Message" /> */}
-               <b className="messagelogo" ><BasicModal  open={open} close={handleClose}/></b>
+               <b className="tmessagelogo" ><BasicModal  open={open} close={handleClose}/></b>
               </div>
             </form>
           </div>
         </div>
-      </div>
+      </div><br/><br/>
     
     </div>
+    
   );
 }

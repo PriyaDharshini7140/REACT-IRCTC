@@ -11,10 +11,14 @@ export default function Reserved() {
   const handleClose = () => setOpen(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [data,setdata]=useState({});
-    const onSubmit = data => {
+    const Token = () => localStorage.getItem("user");
+const onSubmit = data => {
       handleOpen()
       console.log(data)
-      axios.get(`http://localhost:7000/Pnr/viewtraindetails/${data.date}/${data.source}/${data.destination}`).then((res)=>{setdata(res.data);})
+      axios.get(`http://localhost:7000/Pnr/viewtraindetails/${data.date}/${data.source}/${data.destination}`,{
+        headers:{authorization:`Bearer ${Token()}`}
+       }
+         ).then((res)=>{setdata(res.data);})
        }
       
   return (

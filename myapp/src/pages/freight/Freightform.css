@@ -3,6 +3,7 @@
     margin:0px;
     padding:0px;
     font-family: 'Poppins', sans-serif;
+    
 }
 
 .sanfs{
@@ -51,7 +52,7 @@
     padding-bottom: 10px;
 }
 .sanbtnre{
-    width: 50px;
+    display:flex;
 }
 .sanin:focus{
     width:55%; 

@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import './Details.css';
+ import './Details.css';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 
@@ -77,9 +77,9 @@ console.log(value);
 // }
 // };
   return (
-    <section class ="main">
+    <section class ="jmain">
     <div class="register">
-        <div class="container">
+        <div class="jcontainer">
             <div class="topic">
                 <p>Create Your Account</p>
                 <a href="login.html"> <b>SIGN IN</b></a>

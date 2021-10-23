@@ -1,5 +1,5 @@
 import React,{ useEffect, useState } from 'react'
-import './form/Freightform.css'
+//import './form/Freightform.css'
 import axios from 'axios'
 import {useHistory} from "react-router-dom";
 

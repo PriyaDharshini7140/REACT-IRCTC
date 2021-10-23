@@ -13,9 +13,14 @@ export default function Pnr() {
   const handleClose = () => setOpen(false);
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [pnr,setpnr]=useState({});
+    const Token = () => localStorage.getItem("user");
+
     const onSubmit = data => {
+      console.log(data);
       handleOpen()
-      axios.get(`http://localhost:7000/Pnr/viewpnr/${data.pnr}`).then((res)=>{setpnr(res.data);})
+      axios.post('http://localhost:7000/Pnr/viewpnr',data,{
+        headers:{authorization:`Bearer ${Token()}`}
+       }).then((res)=>{setpnr(res.data);})
       console.log(data)};
     return (
    <div class="container">

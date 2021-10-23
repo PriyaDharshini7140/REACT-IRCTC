@@ -21,7 +21,7 @@ export default function BasicModal(props) {
 
   return (
     <div>
-      <Button  type="submit" class="submitbutton">Send Message </Button>
+      <Button  type="submit" class="tsubmitbutton">Send Message </Button>
       <Modal
         open={props.open}
         onClose={()=>props.close()}

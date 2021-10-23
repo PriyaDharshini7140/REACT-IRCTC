@@ -27,21 +27,21 @@ function App() {
       <Navbar/>
        <Switch>
       
-       <Route  path="/fareseat" component={Fareseat} user={user}/>
-       <Route  path="/reserved" component={Reserved} user={user}/>
-       <Route  path="/pnr" component={Pnr} user={user}/>
-       <Route  path="/update" component={Update} user={user}/>
-       <Route  path="/freightform" component={Freightform} user={user}/>
-        <Route  path="/freight" component={Freight} user={user}/>
-        <Route  path="/payment" component={Payment} user={user}/>
-        <Route  path="/passenger" component={Passenger} user={user}/>
-        <Route  path="/avail" component={Availability} user={user}/>
-        <Route  path="/home" component={Home} user={user}/>
+       <ProtectedRoute  path="/fareseat" exact component={Fareseat} user={user}/>
+       <ProtectedRoute  path="/reserved"exact component={Reserved} user={user}/>
+       <ProtectedRoute  path="/pnr"exact component={Pnr} user={user}/>
+       <ProtectedRoute  path="/update" exact component={Update} user={user}/>
+       <ProtectedRoute  path="/freightform" exact component={Freightform} user={user}/>
+        <ProtectedRoute  path="/freight"exact component={Freight} user={user}/>
+        <ProtectedRoute  path="/payment"exact component={Payment} user={user}/>
+        <ProtectedRoute  path="/passenger" exact component={Passenger} user={user}/>
+        <ProtectedRoute  path="/avail" exact component={Availability} user={user}/>
+        <ProtectedRoute path="/home" exact component={Home} user={user}/>
+        {user?<Redirect to='/home'/>:""} 
         
-        
-        <Route path="/contact" component={Contact} /> 
-        <Route path="/Register" component={BasicTabs}/>
-        <Route path="/" component={Login}/> 
+        <Route path="/contact" exact component={Contact} /> 
+        <Route path="/Register" exact component={BasicTabs}/>
+        <Route path="/" exact component={Login}/> 
         
       </Switch>
       <Footer/>

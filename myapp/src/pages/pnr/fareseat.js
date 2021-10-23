@@ -11,10 +11,14 @@ export default function Fareseat() {
   const handleClose = () => setOpen(false);
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [data,setdata]=useState({});
+  const Token = () => localStorage.getItem("user");
+
   const onSubmit = data => {
     handleOpen()
     console.log(data);
-    axios.get(`http://localhost:7000/Pnr/viewtrainfare/${data.tno}/${data.date}/${data.source}/${data.destination}/${data.class}/${data.quota}`).then((res)=>{setdata(res.data);})
+    axios.get(`http://localhost:7000/Pnr/viewtrainfare/${data.tno}/${data.date}/${data.source}/${data.destination}/${data.class}/${data.quota}`,{
+      headers:{authorization:`Bearer ${Token()}`}
+     }).then((res)=>{setdata(res.data);})
      }
   return (
    <div class="container">

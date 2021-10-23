@@ -9,7 +9,7 @@ function Navbar() {;
   
   return (
     <div>
-      {location.pathname === '/update' ||location.pathname === '/freightform' ||location.pathname === '/freight' || location.pathname === '/pnr' ? "":
+      {location.pathname === '/update' ||location.pathname === '/freightform' ||location.pathname === '/freight' || location.pathname === '/pnr' || location.pathname==='/reserved'|| location.pathname==='/fareseat'? "":
        <nav>
         <input type="checkbox" id="check"/>
         <label for="check" class='checkbtn'> 

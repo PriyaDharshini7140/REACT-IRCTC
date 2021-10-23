@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import "./Login.css";
+ import "./Login.css";
 import axios from 'axios';
 
 import {Link,useHistory} from 'react-router-dom';
@@ -23,6 +23,7 @@ if(res.data === "user not found" || res.data === "password does not match"){
      setError(res.data)
 }
 else{
+  window.location.reload(true);
   history.push("/home")
   localStorage.setItem("user", res.data.token);
   localStorage.setItem("user_id", res.data._id);

@@ -10,7 +10,7 @@ const url = 'mongodb://localhost:27017';
 router.post("/addtraindetails",checkPermission(),function(req,res){
     MongoClient.connect(url,function(err,conn){
          var db = conn.db("irctc");
-         db.collection("train").insertOne(req.body,function(err,data)
+         db.collection("trainss").insertOne(req.body,function(err,data)
          {
          
              res.send(data)
@@ -23,7 +23,7 @@ router.post("/addtraindetails",checkPermission(),function(req,res){
  router.get("/deletetraindetails/:id",checkPermission(),function(req,res){
     MongoClient.connect(url,function(err,conn){
         var db=conn.db("irctc");
-        db.collection("train").deleteOne({_id:ObjectId(req.params.id)},function(err,data)
+        db.collection("trainss").deleteOne({_id:ObjectId(req.params.id)},function(err,data)
         {
             res.send(data)   
         })
@@ -37,7 +37,7 @@ router.patch("/updatetraindetails",checkPermission(),function(req,res){
     MongoClient.connect(url,function(err,conn){
        console.log(req.body)
         var db = conn.db("irctc");
-        db.collection("train")
+        db.collection("trainss")
         .updateOne(
             {_id:ObjectId(req.body._id)},
             {
@@ -62,11 +62,11 @@ router.patch("/updatetraindetails",checkPermission(),function(req,res){
 
 // .find({ from, to, date: { $gte: startDate, $lt: endDate } })
 
-router.post("/viewtraindetails",function(req,res){
+router.post("/viewtraindetails",checkPermission(),function(req,res){
 console.log(req.body);
     MongoClient.connect(url,(err,con)=>{
         var db = con.db("irctc")
-        db.collection("train").find({from:req.body.from,to:req.body.to,date:{$gte:req.body.date}}).toArray((err,data)=>
+        db.collection("trainss").find({from:req.body.from,to:req.body.to,date:{$gte:req.body.date}}).toArray((err,data)=>
         {
             res.send(data)
         })
@@ -75,10 +75,10 @@ console.log(req.body);
 })
 
 
-router.get("/viewtraindetails",function(req,res){
+router.get("/viewtraindetails",checkPermission(),function(req,res){
     MongoClient.connect(url,(err,con)=>{
              var db = con.db("irctc")
-             db.collection("train").find().toArray((err,data)=>
+             db.collection("trainss").find().toArray((err,data)=>
              {
                  res.send(data)
              })

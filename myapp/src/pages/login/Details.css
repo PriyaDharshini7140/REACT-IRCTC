@@ -1,4 +1,4 @@
-.main{
+.jmain{
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -22,20 +22,20 @@
   overflow: hidden;
 }
 
-.container .topic {
+.jcontainer .topic {
     display: flex;
     justify-content: space-around;
     background: rgb(255, 255, 255);
   }
   
-  .container .topic p {
+  .jcontainer .topic p {
     display: flex;
     font-size: 25px;
     font-weight: 600;
     background: rgb(252, 252, 252);
   }
   
-  .container .topic b {
+  .jcontainer .topic b {
     display: flex;
     font-size: 15px;
     font-weight: 600;
@@ -43,12 +43,12 @@
     background: rgb(255, 255, 255);
   }
   
-  .container a {
+  .jcontainer a {
     text-decoration: none;
     background: rgb(255, 255, 255);
   }
   
-  .container span {
+  .jcontainer span {
     font-weight: bold;
     cursor: pointer;
     display: inline-block;
@@ -58,7 +58,7 @@
    
   }
   
-  .container .form {
+  .jcontainer .form {
     max-width: 300px;
     padding: 300px;
     padding: 0 20px;
@@ -68,7 +68,7 @@
     background: rgb(255, 255, 255);
   }
   
-  .container .form input {
+  .jcontainer .form input {
     border: none;
     border-bottom: 2px solid #ccc;
     font-size: 15px;
@@ -81,11 +81,11 @@
     background: rgb(255, 255, 255);
   }
   
-  .container .form input:hover {
+  .jcontainer .form input:hover {
     border-color: #012443;
   }
   
-  .container .form select {
+  .jcontainer .form select {
     color: rgb(151, 148, 148);
     font-size: 15px;
     border: none;

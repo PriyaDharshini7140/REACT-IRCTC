@@ -38,7 +38,7 @@ console.log(props);
             Freight Details Updated....
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <center><Button class="sanbtncolor sanuppercase" onClick={()=>history.push("/payment")}>Proceed To Pay</Button></center>
+            <center><Button class="sanbtncolor sanuppercase" onClick={()=>history.push("/home")}>OK</Button></center>
           </Typography>
         </Box>
       </Modal>

@@ -10,7 +10,7 @@ function Availability(props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-   
+    
     const {location:{state}} = props;
     console.log("props",state);
     const [show, handleShow] = useState(false);
@@ -35,15 +35,19 @@ const [errorg, setErrorg] = useState("");
       }
     });
   }, []);
+  const Token = () => localStorage.getItem("user");
+   
     const history = useHistory();
     const trains=()=>{
         axios.post("http://localhost:7000/Train/viewtraindetails",{
 from:from,
 to:to,
 date:date
-        }).then((res)=>{
+        }, {
+            headers:{authorization:`Bearer ${Token()}`}
+           }).then((res)=>{
             console.log(res.data);
-setTrain(res.data)
+       setTrain(res.data)
         })
     }
     console.log(Train);
@@ -61,6 +65,11 @@ e.preventDefault()
    if(to === ""){
         setErrort("*Select to Location")
     }
+    else if(to===from){
+
+        setErrort("*From place and To place must be different")
+  
+      }
     else{
         setErrort("")
     }
@@ -90,6 +99,21 @@ e.preventDefault()
         trains()
       }
 
+}
+const user_id = localStorage.getItem("user_id");
+const book=(train_id)=>{
+    console.log(train_id);
+    axios.post('http://localhost:7000/Booking/booking',{
+user_id:user_id,
+train_id:train_id,
+from:from,to:to,date:date,classes:classes,general:general,amount:0,passengerCount:0,status:"waiting",pnrno:""
+    }, {
+        headers:{authorization:`Bearer ${Token()}`}
+       }).then((res)=>{
+        console.log(res.data);
+        history.push({pathname:"/passenger",state:{booking_id:res.data,from:from,to:to,date:date,classes:classes,general:general}})
+    })
+    
 }
 
     return (
@@ -146,14 +170,11 @@ e.preventDefault()
                   <select id="station" value={classes} class="input_station" onChange={(e)=>{setClasses(e.target.value)
                  setErrorc("")  
                 }}>
-                    <option>Anubhuti Class (EA)</option>
-                    <option>AC First Class (1A)</option>
-                    <option>Exec. Chair Car (EC)</option>
                     <option>AC 2 Tier (2A)</option>
-                    <option>First Class (FC)</option>
                     <option>AC 3 Tier (3A)</option>
                     <option>Sleeper (SL)</option>
-                    <option>Second Sitting (2S)</option>
+                    <option>Ac First Class (FC)</option>
+                    <option>Second Sitting (2S))</option>
                   </select>
                   <div className='error'>{errorc === "" ?"":errorc}</div>
               </li>
@@ -265,14 +286,15 @@ e.preventDefault()
                          {e.classes.map((e)=>{
                              return(
                                 <div style={{padding:"5px"}}>
-                                    {e}
+                                    {e.class}<br/>
+                                    {e.price}
                                     </div>
                              )
                          })}
                      </div>
                      </div>
                      <div class="but">
-                        <button onClick={()=>history.push({pathname:"/passenger",state:{from:from,to:to,date:date,classes:classes,general:general}})}>Book Now</button>
+                        <button onClick={()=>book(e._id)}>Book Now</button>
                      <BasicModal open={open} close={()=>handleClose()} openm={()=>handleOpen()} from={from} to={to} date={date} classes={classes} general={general}/>
                  </div>
                     </div>

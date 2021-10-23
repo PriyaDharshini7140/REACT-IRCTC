@@ -7,7 +7,7 @@ router.use(express.urlencoded({extended:true}));
 router.use(express.json())
 
 
-router.post("/insert", function (req, res) {
+router.post("/insert",checkPermission(),function (req, res) {
     console.log(req.body)
     MongoClient.connect(url, function (err,conn) {
         var db = conn.db("irctc");

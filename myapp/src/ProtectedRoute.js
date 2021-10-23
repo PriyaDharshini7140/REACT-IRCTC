@@ -12,7 +12,7 @@ export default function ProtectedRoute({
       {...rest}
       render={(props) => {
         if (user) {
-          return <Component/>;
+          return <Component {...props}/>;
         } else {
           return (
             <Redirect to={{ pathname: "/", state: { from: props.location } }} />

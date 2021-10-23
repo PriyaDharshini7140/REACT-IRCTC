@@ -53,7 +53,8 @@ function Freightform() {
     const [serrorAr, setsErrorAr] = useState("");
 
     const [serrorFn, setsErrorFn] = useState("");
-
+    const Token = () => localStorage.getItem("user");
+  
     const svalidate = (e) => {
         e.preventDefault()
 
@@ -94,7 +95,9 @@ function Freightform() {
                 try {
                     // await axios.post("http://localhost:8080/insertfreight",
                     axios.post("http://localhost:7000/Freight/insertfreight",
-                        { sfid, sfname, sftype, sdeparture, sarrival, sfrom, sto }
+                        { sfid, sfname, sftype, sdeparture, sarrival, sfrom, sto },  {
+                            headers:{authorization:`Bearer ${Token()}`}
+                           }
                     )
                         .then((req) => { console.log(req.body.data) })
                     // console.log("")

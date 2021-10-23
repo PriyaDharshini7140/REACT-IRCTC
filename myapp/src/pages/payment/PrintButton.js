@@ -16,7 +16,7 @@ export default function PrintBtn(props)
   
   return (
       <div>
-          <ComponentToPrint ref={componentRef} data={props.data}/>
+          <ComponentToPrint ref={componentRef} data={props.data} amount={props.amount}/>
          <div className="divsprint"><button className="divsprintbtn" onClick={handlePrint} ><center><AiFillPrinter size={30 } color="#012443" /> </center></button></div><br/>
             
             </div>

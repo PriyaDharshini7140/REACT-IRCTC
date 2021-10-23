@@ -59,10 +59,11 @@ export default function BasicModal(props) {
                             <input className="sanin sanselect1" value={props.sdep} disabled></input></div>
                         <div class="santxtpadding"><label className="sanlabel1">Arrival:</label>
                             <input className="sanin sanselect1" value={props.sarrival} disabled></input></div>
-                        <button className="sanbtncolor sanuppercase sanbtnre" type="button" onClick={() => history1.push({pathname:"/update", state:{ sfid:props.sfid,sfn: props.sfn, sft:props.sft, sfrom: props.sfrom, sto: props.sto, sdep: props.sdep, sarrival: props.sarrival }})}>Edit</button>
+                            <div class="sanbtnre">
+                        <button className="sanbtncolor sanuppercase" type="button" onClick={() => history1.push({pathname:"/update", state:{ sfid:props.sfid,sfn: props.sfn, sft:props.sft, sfrom: props.sfrom, sto: props.sto, sdep: props.sdep, sarrival: props.sarrival }})}>Edit</button>
                         
-                        <button className="sanbtncolor sanuppercase sanbtnre" onClick={()=>props.close()}>Cancel</button>
-                        </form>
+                        <button className="sanbtncolor sanuppercase" onClick={()=>props.close()}>Cancel</button>
+                        </div> </form>
                     </Typography>
                 </Box>
             </Modal>

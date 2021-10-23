@@ -17,8 +17,10 @@ import {Link, useHistory} from "react-router-dom";
 
 function Freight() {
     const history = useHistory();
+    
     return (
         <div>
+        
             <body>
     <section className="sanbackground">
         <div className="sanheader_menu">
@@ -203,7 +205,7 @@ function Freight() {
     </section>
 </body>
 
-{/* <footer>
+<footer>
     <div id="sans2contact" className="sanf-header">
 
         <div>
@@ -222,8 +224,9 @@ function Freight() {
     <div className="sanf-footer">
 © Copyright Train Ticket Booking 2022 Site | Terms of Use | Privacy Policy
     </div>
-</footer> */}
+</footer>
         </div>
+      
     )
 }
 

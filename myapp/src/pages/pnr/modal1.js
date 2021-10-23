@@ -10,7 +10,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  width: 500,
   bgcolor: 'background.paper',
   border: '2px solid #012443 10px',
   boxShadow: 24,
@@ -38,9 +38,9 @@ export default function BasicModal(props) {
              {props.data?<div className="modscon">
              
          <p className="pf">PNR No<span className="modsdata">{props.data.pnrno}</span></p>
-             <p className="pf">No of Passengers:<span className="modsdata">{props.data.passenger_count}</span></p>
-           <p className="pf">Amount paid for tickets:<span className="modsdata">{props.data.totalamount}</span></p>
-             <p className="pf">Booking Status:<span className="modsdata">{props.data.booking_status}</span></p>
+             <p className="pf">No of Passengers:<span className="modsdata">{props.data.passengerCount}</span></p>
+           <p className="pf">Amount paid for tickets:<span className="modsdata">{props.data.amount}</span></p>
+             <p className="pf">Booking Status:<span className="modsdata">{props.data.status}</span></p>
             <p className="pf">Train No:<span className="modsdata">{props.data.train_id}</span></p>
            <p className="pf">User Id:<span className="modsdata">{props.data.user_id}</span></p>
 

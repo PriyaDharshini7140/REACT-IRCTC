@@ -1,25 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
-h1, p {
-    font-family: Lato;
-  }
-   /* .container {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-   
-  } 
-   .container{
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    align-items: center;
-   
-    background:white ;
-    position: relative;
-  }  */
-  /* .container{
-    border:1px solid black;
-    height:100vh;
-  } */
+
  
   @media (min-width:900px) {
     .container::before{
@@ -31,8 +11,12 @@ h1, p {
       top: 0;
       background:#ffe26f;
       clip-path: polygon(86% 0, 100% 0, 100% 100%, 60% 100%);
+     
     }}
-  .topnav {
+  
+
+
+    .topnav {
     background-color:#ffe26f;
     overflow: hidden;
     text-align: center;
@@ -229,6 +213,7 @@ h1, p {
       text-align: left;
     }
   }
+ 
   * {
     box-sizing: border-box;
   }
@@ -245,9 +230,9 @@ h1, p {
     .f3{
       height: 550px;
     }
-    /* .f2{
+    .f2{
       height:350px;
-    } */
+    }
   }
   .all2{
   display: flex;
@@ -261,10 +246,10 @@ h1, p {
       width:175px;
   
     }
-    input[date]{
+     input[date]{
       height:20px;
       width:175px;
-    }
+    } 
     .cars{
       height:20px;
       width:175px;
@@ -308,3 +293,4 @@ h1, p {
      font-size: 20px;
      font-weight: bold;
    }
+  

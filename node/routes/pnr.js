@@ -4,7 +4,7 @@ const{MongoClient,ObjectId} = require('mongodb')
 const url ='mongodb://localhost:27017/';
 const { checkPermission } = require("../middleware/CheckPermission");
 //view train details
-router.get("/viewtraindetails/:date/:source/:destination",function(req,res){
+router.get("/viewtraindetails/:date/:source/:destination",checkPermission(),function(req,res){
  
     MongoClient.connect(url,function(err,con){
 
@@ -19,7 +19,7 @@ router.get("/viewtraindetails/:date/:source/:destination",function(req,res){
     })
 
 })
-router.post("/inserttraindetails", function (req, res) {
+router.post("/inserttraindetails",checkPermission(), function (req, res) {
     MongoClient.connect(url, function (err, conn) {
         var db = conn.db("irctc");
         db.collection("alltraindetails").insertOne(req.body, function (err, data) {
@@ -29,7 +29,7 @@ router.post("/inserttraindetails", function (req, res) {
 })
 
 //viewtrainfareandseat details
-router.get("/viewtrainfare/:tno/:date/:source/:destination/:class/:quota",function(req,res){
+router.get("/viewtrainfare/:tno/:date/:source/:destination/:class/:quota",checkPermission(),function(req,res){
     console.log(req.params.tno)
     MongoClient.connect(url,function(err,con){
         var db = con.db("irctc")
@@ -40,21 +40,16 @@ router.get("/viewtrainfare/:tno/:date/:source/:destination/:class/:quota",functi
 })
 
 //view pnr status
-router.get("/viewpnr/:pnrno",function(req,res){
+router.post("/viewpnr",checkPermission(),function(req,res){
+    console.log(req.body);
     MongoClient.connect(url,function(err,con){
         var db = con.db("irctc")
-        db.collection('pnr').findOne({pnrno:(req.params.pnrno)},function(err,data){
+        db.collection('bookings').findOne({pnrno:req.body.pnr},function(err,data){
+            console.log(data);
             res.send(data)
         })
     })
 })
 //insertpnr
-router.post("/insertpnrstatus", function (req, res) {
-    MongoClient.connect(url, function (err, conn) {
-        var db = conn.db("irctc");
-        db.collection("pnr").insertOne(req.body, function (err, data) {
-            res.send(data)
-        })
-    })
-})
+
 module.exports = router

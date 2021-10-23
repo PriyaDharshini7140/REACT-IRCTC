@@ -186,7 +186,7 @@ const [general, setGeneral] = useState(state.general)
     );
     setChildinputFields(values);
   };
-
+  const Token = () => localStorage.getItem("user");
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -194,15 +194,24 @@ const [general, setGeneral] = useState(state.general)
      if(numberverified){
        if(adultverified){
          axios.post("http://localhost:7000/passenger/addpassenger",
-         {Passengers:adultFields,childinputFields,
+         {booking_id:state.booking_id,Passengers:adultFields,childinputFields,
           
           policy_Status:policy,
-          Phone_Number:phone}).then((res)=>{console.log(res.data)
-            history.push({pathname:"/payment",state:{Passengers:adultFields,childinputFields,
-          
-              policy_Status:policy,
-              Phone_Number:phone}})
-          })
+          Phone_Number:phone},  {
+            headers:{authorization:`Bearer ${Token()}`}
+           }
+       ).then((res)=>{console.log(res.data)
+            axios.patch("http://localhost:7000/Booking/updateCount",
+            {_id:state.booking_id,passengerCount:adultFields.length,
+             },  {
+              headers:{authorization:`Bearer ${Token()}`}
+             }
+         ).then((res)=>{
+               console.log(res.data);
+              history.push({pathname:"/payment",state:{booking_id:state.booking_id,class:classes,Passengers:adultFields.length,}})
+
+             })
+                      })
          
        }else{alert('Save Passenger Details')}
      }else{

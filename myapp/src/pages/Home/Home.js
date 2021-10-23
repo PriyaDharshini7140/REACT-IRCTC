@@ -11,7 +11,7 @@ import image9 from '../../assets/dom.jpg'
 import image10 from '../../assets/tour.jpg'
 import image11 from '../../assets/temple.jpg'
 import image12 from '../../assets/hill.jpg'
-import './Home.css'
+ import './Home.css'
 import {useHistory} from "react-router-dom";
 function Home() {
   const history = useHistory();
@@ -25,6 +25,7 @@ const [errort, setErrort] = useState(false);
 const [errord, setErrord] = useState(false);
 const [errorc, setErrorc] =useState(false);
 const [errorg, setErrorg] =useState(false);
+
 const validate =(e)=>{
 e.preventDefault()
 
@@ -37,6 +38,11 @@ e.preventDefault()
 
    if(to === ""){
         setErrort("*Select to location")
+    }
+    else if(to===from){
+
+      setErrort("*From place and To place must be different")
+
     }
     else{
         setErrort('')
@@ -134,14 +140,11 @@ if(errorF ==="" && errorc==="" && errord==="" && errorg==="" && errort===""){
  
              
  <option>--Select Class--</option>
-                 <option>AC First class (1A)</option>
-                 <option>Exec. Chair Car (EC)</option>
-                 <option>AC 2 Tier (2A)</option>
-                 <option>First class(FC)</option>
-                 <option>AC 3 Tier (3A)</option>
-                 <option>Anubhuti class (EA)</option>
-                 <option>Sleeper (SL)</option>
-                 <option>Second Sitting (2S)</option>
+ <option value="2070">AC 2 Tier (2A)</option>
+                    <option >AC 3 Tier (3A)</option>
+                    <option>Sleeper (SL)</option>
+                    <option>Ac First Class (FC)</option>
+                    <option>Second Sitting (2S))</option>
              </select>
              <div className='error'>{errorc === "" ?"":errorc}</div>
          </div>

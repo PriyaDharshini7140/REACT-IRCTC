@@ -4,9 +4,9 @@
   color: red;
   font-weight: bold;
 }
-*{
+/* *{
   box-sizing: border-box;
-}
+} */
 /* html, body {
   overflow-x: hidden;
   height: 100%;
@@ -76,6 +76,7 @@
   border-radius: 3px;
   width: 80%;
   box-shadow: 0 0 1.5rem 0 #f7e28e;
+  /* box-sizing: border-box; */
 }
 .divscontainer1 {
   margin-right: 70px;

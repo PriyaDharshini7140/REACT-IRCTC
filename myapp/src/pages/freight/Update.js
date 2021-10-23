@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Freightform.css'
+//import './Freightform.css'
 import { useHistory, useLocation } from "react-router-dom";
 import axios from 'axios';
 import BasicModal1 from './modalbtn';
@@ -9,6 +9,8 @@ import "react-datepicker/dist/react-datepicker.css";
 function Update(props) {
     const history = useHistory();
     console.log(props)
+    const Token = () => localStorage.getItem("user");
+
     const location = useLocation();
     const [sopen,setsOpen]=useState(false);
     const handleClose = () => setsOpen(false);
@@ -38,7 +40,9 @@ function Update(props) {
         e.preventDefault()
         try {
             axios.patch("http://localhost:7000/Freight/updatefreight",
-            { sfid:sf,sfname:sfname, sftype:sftype,sdeparture:sdeparture, sarrival:sarrival,sfrom:sfrom, sto:sto }
+            { sfid:sf,sfname:sfname, sftype:sftype,sdeparture:sdeparture, sarrival:sarrival,sfrom:sfrom, sto:sto },{
+                headers:{authorization:`Bearer ${Token()}`}
+               }
             )
         }
         catch (error) {
@@ -147,7 +151,7 @@ function Update(props) {
                             <div className="sansubmit"><button type="reset" className="sanbtncolor sanuppercase">Reset</button>
                                 <BasicModal1 sopen={sopen} close={handleClose} funcup={(e) => supdateData(e)}/>
                                 
-                                <button type="button" className="sanbtncolor sanuppercase" onClick={() => history.push("")}>Cancel
+                                <button type="button" className="sanbtncolor sanuppercase" onClick={() => history.push("/freight")}>Cancel
                                 </button>
                             </div>
                         </div>
