@@ -1,3 +1,4 @@
+require("dotenv").config()
 const express = require("express")
 const cors = require('cors');
 const app = express();
@@ -20,6 +21,7 @@ app.use('/Payment',Payment)
 app.use('/Freight',Freight)
 app.use('/Contact',Contact)
 app.use('/User',User)
-app.listen(7000,()=>{
+const port = process.env.PORT || 4000 ;
+app.listen(port,()=>{
     console.log("running in port 7000");
 })
